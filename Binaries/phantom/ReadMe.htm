@@ -1,0 +1,890 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<TITLE>Phantom Version 1.0</TITLE>
+		<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+		<meta name="GENERATOR" content="Microsoft Visual Studio.NET 7.0">
+		<style> <!-- BODY { FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial; BACKGROUND-COLOR: lightskyblue }
+	H1 { FONT-SIZE: 22px }
+	H2 { FONT-SIZE: 18px }
+	H3 { FONT-SIZE: 14px }
+	TR { FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial; }
+	--></style>
+	</HEAD>
+	<BODY BGCOLOR="lightskyblue">
+		<H1 align="center">
+			Phantom Version 1.0 Release Candidate&nbsp;2
+		</H1>
+		<P>
+			Phantom.dll is a replacement for the SPIRIT.OCX control that was included in 
+			the Lego Robotics Invention System 1.0 and dropped from the Lego Robotics 
+			Invention System 2.0.
+		</P>
+		<P>
+			The goal is to provide a drop in replacement that supports the new USB IR 
+			tower.
+		</P>
+		<H2>
+			What's New
+		</H2>
+		<UL>
+			<LI>
+			Release Candidate 2
+			<LI>
+			Name change from PBrick to Phantom.
+			<LI>
+			Version Number Set to 1.0&nbsp;from 0.2.0.1
+			<LI>
+			Full functionality implemented. All Spirit.ocx functionality except CyberMaster 
+			support.
+			<LI>
+				New enumerated data types added to the typelib.
+			</LI>
+		</UL>
+		<H2>
+			Release History
+		</H2>
+		<UL>
+			<LI>
+			Version 0.2.0.5 - Corrected Error in Download Progress Events.&nbsp; 
+			Encaplulated the RCX commands into new RCX_Command class.
+			<LI>
+			Version 0.2.0.4 - Corrected Error DataLog functions
+			<LI>
+			Phantom 1.0 RC1 Version 0.2.0.1
+			<LI>
+			Version 0.2.1 - Full USB support
+			<LI>
+			Version 0.2.0 - Added the ability to download firmware to the RCX
+			<LI>
+				Version 0.1.0 - First Alpha Release.
+			</LI>
+		</UL>
+		<H2>
+			Requirements
+		</H2>
+		<P>
+			The USB driver from Lego is required. This can be obtained by downloading the <A href="http://mindstorms.lego.com/sdk2/default.asp">
+				LEGO MINDSTORMS SDK 2.0 </A>.
+		</P>
+		<P>
+			Documenatation for the SPIRIT.OCX can be obtained by downloading the <A href="http://mindstorms.lego.com/sdk/SDK.asp">
+				LEGO MINDSTORMS SDK 1.0</A>.
+		</P>
+		<H2>
+			Methods and Properties
+		</H2>
+		<H3>
+			Communication control commands:
+		</H3>
+		<UL>
+			<LI>
+			Property ComPortNo As COMPORTOPTIONS
+			<LI>
+			Function InitComm() As Boolean
+			<LI>
+			Function CloseComm() As Boolean
+			<LI>
+			Function GetShortTermRetransStatistics() As Variant
+			<LI>
+			Function GetLongTermRetransmitStatistics() As Variant
+			<LI>
+			Function SetRetransmitRetries(immidiateRetries As Integer, downloadRetries As 
+			Integer) As Boolean
+			<LI>
+				Function IgnDLerrUntilGoodAnswer() As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Firmware control commands:
+		</H3>
+		<UL>
+			<LI>
+			Function UnlockFirmware(UnlockString As String) As String
+			<LI>
+			Function UnlockPBrick() As String
+			<LI>
+				Function DownloadFirmware(Filename As String) As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Diagnostics commands:
+		</H3>
+		<UL>
+			<LI>
+			Function PBAliveOrNot() As Boolean
+			<LI>
+			Function TowerAlive() As Boolean
+			<LI>
+				Function TowerAndCableConnected() As Boolean
+			</LI>
+		</UL>
+		<H3>
+			System commands:
+		</H3>
+		<UL>
+			<LI>
+			Function SelectDisplay(Source As RCX_SOURCE, Number As Integer) As Boolean
+			<LI>
+			Function SetWatch(Hours As Integer, Min As Integer) As Boolean
+			<LI>
+			Function PBPowerdownTime(Time As Integer) As Boolean
+			<LI>
+			Function PBTurnOff() As Boolean
+			<LI>
+			Function PBTxPower(Number As Integer) As Boolean
+			<LI>
+			Function PlayTone(Frequency As Integer, Time As Integer) As Boolean
+			<LI>
+			Function PlaySystemSound(Number As Integer) As Boolean
+			<LI>
+			Function ClearTimer(Number As Integer) As Boolean
+			<LI>
+			Function SendPBMessage(Source As RCX_SOURCE, Number As Integer) As Boolean
+			<LI>
+				Function ClearPBMessage() As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Output control commands:
+		</H3>
+		<UL>
+			<LI>
+			Function On(MotorList As String) As Boolean
+			<LI>
+			Function Off(MotorList As String) As Boolean
+			<LI>
+			Function Float(MotorList As String) As Boolean
+			<LI>
+			Function SetFwd(MotorList As String) As Boolean
+			<LI>
+			Function SetRwd(MotorList As String) As Boolean
+			<LI>
+			Function AlterDir(MotorList As String) As Boolean
+			<LI>
+			Function SetPower(MotorList As String, Source As RCX_SOURCE, Number As Integer) 
+			As Boolean
+			<LI>
+			Function Wait(Source As RCX_SOURCE, Number As Integer) As Boolean
+			<LI>
+			Function Drive(Number0 As Integer, Number1 As Integer) As Boolean
+			<LI>
+			Function Drive(Number0 As Integer, Number1 As Integer) As Boolean
+			<LI>
+			Function OnWaitDifferent(MotorList As String, Number0 As Integer, Number1 As 
+			Integer, Number2 As Integer, Time As Integer) As Boolean
+			<LI>
+				Function ClearTachoCounter(MotorList As String) As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Input control commands:
+		</H3>
+		<UL>
+			<LI>
+			Function SetSensorType(Number As Integer, Type As Integer) As Boolean
+			<LI>
+			Function SetSensorMode(Number As Integer, Mode As Integer, Slope As Integer) As 
+			Boolean
+			<LI>
+				Function ClearSensorValue(Number As Integer) As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Program control commands:
+		</H3>
+		<UL>
+			<LI>
+			Function SelectPrgm(Number As Integer) As Boolean
+			<LI>
+			Function DeleteTask(Number As Integer) As Boolean
+			<LI>
+			Function DeleteAllTasks() As Boolean
+			<LI>
+			Function DeleteSub(Number As Integer) As Boolean
+			<LI>
+				Function DeleteAllSubs() As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Program execution commands:
+		</H3>
+		<UL>
+			<LI>
+			Function StartTask(Number As Integer) As Boolean
+			<LI>
+			Function StopAllTasks() As Boolean
+			<LI>
+			Function StopTask(Number As Integer) As Boolean
+			<LI>
+				Function GoSub(Number As Integer) As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Flow control commands:
+		</H3>
+		<UL>
+			<LI>
+			Function Loop(Source As RCX_SOURCE, Number As Integer) As Boolean
+			<LI>
+			Function EndLoop() As Boolean
+			<LI>
+			Function While(Source1 As RCX_SOURCE, Number1 As Integer, RelOp As Integer, 
+			Source2 As RCX_SOURCE, Number2 As Integer) As Boolean (To Be Done)
+			<LI>
+			Function EndWhile() As Boolean
+			<LI>
+			Function If(Source1 As RCX_SOURCE, Number1 As Integer, RelOp As Integer, 
+			Source2 As RCX_SOURCE, Number2 As Integer) As Boolean (To Be Done)
+			<LI>
+			Function Else() As Boolean
+			<LI>
+			Function EndIf() As Boolean
+			<LI>
+			Function BeginOfTask(Number As Integer) As Boolean (To Be Done)
+			<LI>
+			Function EndOfTask() As Integer
+			<LI>
+			Function EndOfTaskNoDownload() As Boolean
+			<LI>
+			Function BeginOfSub(Number As Integer) As Boolean
+			<LI>
+			Function EndOfSub() As Boolean
+			<LI>
+				Function EndOfSubNoDownload() As Boolean
+			</LI>
+		</UL>
+		<H3>
+			Arithmetic/logical commands:
+		</H3>
+		<UL>
+			<LI>
+			Function AbsVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+			Function AndVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+			Function DivVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+			Function MulVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+			Function OrVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+			Function SetVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+			Function SgnVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+			Function SubVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+			Boolean
+			<LI>
+				Function SumVar(VarNo As Integer, Source As RCX_SOURCE, Number As Integer) As 
+				Boolean
+			</LI>
+		</UL>
+		<H3>
+			Query commands:
+		</H3>
+		<UL>
+			<LI>
+			Function SetEvent(Source As RCX_SOURCE, Number As Integer, Time As Integer) As 
+			Boolean
+			<LI>
+			Function ClearEvent(Source As RCX_SOURCE, Number As Integer) As Boolean
+			<LI>
+			Function ClearAllEvents() As Boolean
+			<LI>
+			Function Poll(Source As RCX_SOURCE, Number As Integer) As Integer
+			<LI>
+			Function PBBattery() As Integer
+			<LI>
+				Function MemMap() as Variant
+			</LI>
+		</UL>
+		<H3>
+			Data acquisition commands
+		</H3>
+		<UL>
+			<LI>
+			Function SetDatalog(Size As Integer) As Boolean
+			<LI>
+			Function DatalogNext(Source As RCX_SOURCE, Number As Integer) As Boolean
+			<LI>
+				Function UploadDatalog(From As Integer, Size As Integer) as Variant
+			</LI>
+		</UL>
+		<H3>
+			ActiveX Events:
+		</H3>
+		<UL>
+			<LI>
+			AsyncronBrickError(ByVal Number As Long, ByVal Description As String)
+			<LI>
+			DownloadDone(ByVal ErrorCode As Long, ByVal DownloadNo As Long)
+			<LI>
+			DownloadProgress(ByVal BytesDownloaded As Long )
+			<LI>
+			DownloadStatus(ByVal timeInMS As Long, ByVal sizeInBytes As Long, ByVal taskNo 
+			As Long)
+			<LI>
+			InputChange(ByVal Number As Long, ByVal Value As Long)
+			<LI>
+				VariableChange(ByVal Number As Long, ByVal Value As Long)
+			</LI>
+		</UL>
+		<H3>
+			ActiveX enumerated data types:
+		</H3>
+		<P>
+			The following enumerated data types are supplied by the phantom.dll typelib. 
+			They can help make your VB program more readable:
+		</P>
+		<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			<P>
+				<FONT face="Courier">Phantom.If( SRC_VAR, 2, EQ, SRC_CON, 3) ' if Variable 2 is 
+					equal to 3 </FONT>
+			</P>
+		</BLOCKQUOTE>
+		<P>
+			instead of
+		</P>
+		<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			<P>
+				<FONT face="Courier">Phantom.If( 0, 2, 2, 2, 3) </FONT>
+			</P>
+		</BLOCKQUOTE>
+		<P>
+			<TABLE style="WIDTH: 100%" cellSpacing="0" cellPadding="2" width="100%" background="" border="1">
+				<TR style="BACKGROUND-COLOR: black">
+					<TD>
+						<FONT color="white"><STRONG>Data Type</STRONG></FONT>
+					</TD>
+					<TD>
+						<FONT color="white"><STRONG>Name and Value</STRONG></FONT>
+					</TD>
+					<TD>
+						<FONT color="white"><STRONG>Description</STRONG></FONT>
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="5">
+						COMPORTOPTIONS
+					</TD>
+					<TD>
+						USB = 0
+					</TD>
+					<TD>
+						USB IR Tower
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						COM1 = 1
+					</TD>
+					<TD>
+						Serial IR Tower on com1
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						COM2 = 2
+					</TD>
+					<TD>
+						Serial IR Tower on com2
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						COM3 = 3
+					</TD>
+					<TD>
+						Serial IR Tower on com3
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						COM4 = 4
+					</TD>
+					<TD>
+						Serial IR Tower on com4
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="16">
+						RCX_SOURCE
+					</TD>
+					<TD>
+						SRC_VAR = 0
+					</TD>
+					<TD>
+						Variable
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_TIMER = 1
+					</TD>
+					<TD>
+						Timer
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_CON = 2
+					</TD>
+					<TD>
+						Constant
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_MOTSTA = 3
+					</TD>
+					<TD>
+						Motor Status
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_RAN = 4
+					</TD>
+					<TD>
+						Random Number
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_TACC = 5
+					</TD>
+					<TD>
+						Tacho Counter (Not Supported)
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_TACS = 6
+					</TD>
+					<TD>
+						Tacho Speed (Not Supported)
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_MOTCUR = 7
+					</TD>
+					<TD>
+						Motor Current (Not Supported)
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_KEYS = 8
+					</TD>
+					<TD>
+						Program Number
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_SENVAL = 9
+					</TD>
+					<TD>
+						Sensor Value
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_SENTYPE = 10
+					</TD>
+					<TD>
+						Sensor Type
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_SENMODE = 11
+					</TD>
+					<TD>
+						Sensor Mode
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_SENRAW = 12
+					</TD>
+					<TD>
+						Sensor Raw
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_SENBOOL = 13
+					</TD>
+					<TD>
+						Sensor Boolean
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_WATCH = 14
+					</TD>
+					<TD>
+						Watch
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SRC_PBMESS = 15
+					</TD>
+					<TD>
+						PB Message
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="3">
+						LINKTYPEOPTIONS
+					</TD>
+					<TD>
+						INFRARED = 0
+					</TD>
+					<TD>
+						IR Tower
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						CABLE = 1
+					</TD>
+					<TD>
+						Cable Connection (Not Supported)
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						RADIO = 2
+					</TD>
+					<TD>
+						CyberMaster (Not Supported)
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="3">
+						PBRICKOPTIONS
+					</TD>
+					<TD>
+						RCX2 = 0
+					</TD>
+					<TD>
+						RCX
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SCOUT = 1
+					</TD>
+					<TD>
+						Scout
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MICROSCOUT = 2
+					</TD>
+					<TD>
+						MicroScout
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="6">
+						RCX_SOUNDS
+					</TD>
+					<TD>
+						SOUND_CLICK = 0
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SOUND_BEEP = 1
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SOUND_SWEEPDOWN = 2
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SOUND_SWEEPUP = 3
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SOUND_ERROR = 4
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SOUND_SWEEPFAST = 5
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="3">
+						RCX_SENSORNAME
+					</TD>
+					<TD>
+						SENSOR_1 = 0
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SENSOR_2 = 1
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						SENSOR_3 = 2
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="4">
+						RCX_TIMERNAME
+					</TD>
+					<TD>
+						TIMER_1 = 0
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						TIMER_2 = 1
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						TIMER_3 = 2
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						TIMER_3 = 3
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="5">
+						RCX_SENSORTYPE
+					</TD>
+					<TD>
+						TYPE_NONE = 0
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						TYPE_SWITCH = 1
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						TYPE_TEMP = 2
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						TYPE_LIGHT = 3
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						TYPE_ANGLE = 4
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="8">
+						RCX_SENSORMODE
+					</TD>
+					<TD>
+						MODE_RAW = 0
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MODE_BOOL = 1
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MODE_TRANS_COUNT = 2
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MODE_PERIOD_COUNT = 3
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MODE_PERCENT = 4
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MODE_CELSIUS = 5
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MODE_FAHRENHEIT = 6
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						MODE_ANGLE = 7
+					</TD>
+					<TD>
+						&nbsp;
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="3">
+						RCX_OUTPUTNAME
+					</TD>
+					<TD>
+						OUTPUT_A = 0
+					</TD>
+					<TD>
+						Motor 0
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						OUTPUT_B = 1
+					</TD>
+					<TD>
+						Motor 1
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						OUTPUT_C = 2
+					</TD>
+					<TD>
+						Motor 2
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign="top" rowSpan="4">
+						RCX_OPERATORS
+					</TD>
+					<TD>
+						GT = 0
+					</TD>
+					<TD>
+						Greater Than
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						LT = 1
+					</TD>
+					<TD>
+						Less Than
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						EQ = 2
+					</TD>
+					<TD>
+						Equal
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						NE = 3
+					</TD>
+					<TD>
+						Not Equal
+					</TD>
+				</TR>
+			</TABLE>
+		</P>
+	</BODY>
+</HTML>
